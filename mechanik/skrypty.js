@@ -33,10 +33,33 @@ function nurkowanie() {
     dataType: "html",
     data: {
       "funkcja": "nurkowanie",
-      "klucz": $("input#wartosc").val()
+      "klucz": $("input#wartosc").val();
     },
     success: function(dane){
       $("div#wynikowy").html(dane);
+      $("input#numer").val($("input#wartosc").val());
+    },
+    beforeSend: function(){},
+    complete: function(){},
+    error: function(xhr){
+      console.log(xhr.responseText);
+    }
+  });
+};
+
+function zapisuj() {
+  $.ajax({
+    type: "POST",
+    url: "generator.php",
+    dataType: "html",
+    data: {
+      "funkcja": "zapisz",
+      "numer": $("input#numer").val(),
+      "efektywnosc": $("select#efektywnosc").val(),
+      "status": $("select#status").val(),
+    },
+    success: function(dane){
+      $("div#odczyt").html(dane);
     },
     beforeSend: function(){},
     complete: function(){},
