@@ -4,7 +4,7 @@ $osoby = array(1 => "Danny", 2 => "Sandy");
 
 $efektywnosc = array (1 => "TAK", 0=> "NIE");
 
-$statusy = array (1 => "ND", 2 => "odebrał, spadać", 3 => "odebrał, będzie", 4 => "");
+$statusy = array (1 => "ND", 2 => "odebrał, spadać", 3 => "odebrał, będzie", 4 => "odebrał, ktoś inny");
 
 
 function drukuj_szukacz() {
@@ -37,6 +37,22 @@ function moja_data() {
   $drukowana = $data->format('Y-m-d H:i:s');
 
   return $drukowana;
+}
+
+function drukuj_wyniki ($wynik) {
+  print "<table border=1>";
+  print "<tr><td>kiedy</td><td>kto</td><td>efektywne?</td><td>rezultat</td></tr>";
+  foreach ($wynik as $klucze => $wartosci)
+   {
+    print "<tr>";
+    print "<td>".$wartosci['data']."</td>";
+    print "<td>".$osoby[$wartosci['osoba']]."</td>";
+    print "<td>".$efektywnosc[$wartosci['efektywne']]."</td>";
+    print "<td>".$statusy[$wartosci['rezultat']]."</td>";
+
+    print "</tr>";
+   }
+  print "</table>";
 }
 
 ?>

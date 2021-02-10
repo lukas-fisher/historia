@@ -17,19 +17,7 @@ if(isset($_SESSION['osoba']))
 
       if ($wynik == TRUE)
        {
-        print "<table border=1>";
-        print "<tr><td>kiedy</td><td>kto</td><td>efektywne?</td><td>rezultat</td></tr>";
-        foreach ($wynik as $klucze => $wartosci)
-         {
-          print "<tr>";
-          print "<td>".$wartosci['data']."</td>";
-          print "<td>".$osoby[$wartosci['osoba']]."</td>";
-          print "<td>".$efektywnosc[$wartosci['efektywne']]."</td>";
-          print "<td>".$statusy[$wartosci['rezultat']]."</td>";
-
-          print "</tr>";
-         }
-        print "</table>";
+        drukuj_wyniki($wynik)
        }
       else {
          print "brak danych";
@@ -40,11 +28,15 @@ if(isset($_SESSION['osoba']))
 
    elseif ($_POST['funkcja'] == "zapisz")
     {
-     print "dodawanie...";
-
+     print "dodawanie...<br/>";
      db_dodaj($_POST['numer'], $_SESSION['osoba'], moja_data(), $_POST['efektywnosc'], $_POST['status']);
+
+     $wynik = db_szukaj($_POST['klucz']);
+     if ($wynik == TRUE)
+      {
+       drukuj_wyniki($wynik)
+      }
     }
  }
-
 
 ?>
