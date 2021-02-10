@@ -2,10 +2,15 @@
 
 $osoby = array(1 => "Danny", 2 => "Sandy");
 
+$efektywnosc = array (1 => "TAK", 0=> "NIE");
+
+$statusy = array (1 => "ND", 2 => "odebrał, spadać", 3 => "odebrał, będzie", 4 => "");
+
 
 function drukuj_szukacz() {
   print "<div id='szukacz'><input type='text' id='wartosc'><button id='nurkuj' onclick='nurkowanie()'>zobacz</button></div>";
-  print "<div id='wynikowy'>tutaj będą wyniki</div>";
+  print "<div id='wynikowy'>";
+  print "</div>";
 }
 
 function pasek_dodawania($numer) {
@@ -29,7 +34,7 @@ function pasek_dodawania($numer) {
 
 function moja_data() {
   $data = new DateTime();
-  $drukowana = $data->format('Y-m-d');
+  $drukowana = $data->format('Y-m-d H:i:s');
 
   return $drukowana;
 }

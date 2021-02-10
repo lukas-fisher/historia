@@ -33,7 +33,7 @@ function nurkowanie() {
     dataType: "html",
     data: {
       "funkcja": "nurkowanie",
-      "klucz": $("input#wartosc").val();
+      "klucz": $("input#wartosc").val()
     },
     success: function(dane){
       $("div#wynikowy").html(dane);
@@ -56,7 +56,7 @@ function zapisuj() {
       "funkcja": "zapisz",
       "numer": $("input#numer").val(),
       "efektywnosc": $("select#efektywnosc").val(),
-      "status": $("select#status").val(),
+      "status": $("select#status").val()
     },
     success: function(dane){
       $("div#odczyt").html(dane);
