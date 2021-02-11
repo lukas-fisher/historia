@@ -40,6 +40,9 @@ function moja_data() {
 }
 
 function drukuj_wyniki ($wynik) {
+  global $osoby;
+  global $efektywnosc;
+  global $statusy;
   print "<table border=1>";
   print "<tr><td>kiedy</td><td>kto</td><td>efektywne?</td><td>rezultat</td></tr>";
   foreach ($wynik as $klucze => $wartosci)

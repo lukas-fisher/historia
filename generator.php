@@ -17,7 +17,7 @@ if(isset($_SESSION['osoba']))
 
       if ($wynik == TRUE)
        {
-        drukuj_wyniki($wynik)
+        drukuj_wyniki($wynik);
        }
       else {
          print "brak danych";
@@ -31,10 +31,10 @@ if(isset($_SESSION['osoba']))
      print "dodawanie...<br/>";
      db_dodaj($_POST['numer'], $_SESSION['osoba'], moja_data(), $_POST['efektywnosc'], $_POST['status']);
 
-     $wynik = db_szukaj($_POST['klucz']);
+     $wynik = db_szukaj($_POST['numer']);
      if ($wynik == TRUE)
       {
-       drukuj_wyniki($wynik)
+       drukuj_wyniki($wynik);
       }
     }
  }
