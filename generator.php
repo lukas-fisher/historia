@@ -37,6 +37,18 @@ if(isset($_SESSION['osoba']))
        drukuj_wyniki($wynik);
       }
     }
+
+   elseif ($_POST['funkcja'] == "wyrzuc")
+    {
+      print "usunięto wpis...<br/>";
+      db_usun($_POST['id']);
+
+      $wynik = db_szukaj($_POST['numer']);
+      if ($wynik == TRUE)
+       {
+        drukuj_wyniki($wynik);
+       }
+    }
  }
 
 ?>

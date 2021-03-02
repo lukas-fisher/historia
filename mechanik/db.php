@@ -25,4 +25,12 @@ function db_dodaj($numer, $osoba, $data, $efektywnosc, $status) {
   return $wykonaj;
 }
 
+function db_usun($id) {
+  global $db;
+  $zapytanie = "DELETE FROM dialer WHERE ID = ".$id."";
+
+  $wykonaj = mysqli_query($db, $zapytanie) or die(mysqli_error()." db_usun");
+  return $wykonaj;
+}
+
 ?>

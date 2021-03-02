@@ -55,8 +55,30 @@ function zapisuj() {
     data: {
       "funkcja": "zapisz",
       "numer": $("input#numer").val(),
-      "efektywnosc": $("select#efektywnosc").val(),
-      "status": $("select#status").val()
+      "efektywnosc": $("input[name=efektywnosc]:checked").val(),
+      "status": $("input[name=status]:checked").val()
+    },
+    success: function(dane){
+      $("div#odczyt").html(dane);
+    },
+    beforeSend: function(){},
+    complete: function(){},
+    error: function(xhr){
+      console.log(xhr.responseText);
+    }
+  });
+};
+
+
+function wyrzuc(id) {
+  $.ajax({
+    type: "POST",
+    url: "generator.php",
+    dataType: "html",
+    data: {
+      "funkcja": "wyrzuc",
+      "numer": $("input#numer").val(),
+      "id": (id)
     },
     success: function(dane){
       $("div#odczyt").html(dane);

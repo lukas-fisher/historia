@@ -1,10 +1,10 @@
 <?php
 
-$osoby = array(1 => "Danny", 2 => "Sandy");
+$osoby = array(1 => "Daniel", 2 => "Sandra", 3 => "Damian", 4 => "Lukasz");
 
 $efektywnosc = array (1 => "TAK", 0=> "NIE");
 
-$statusy = array (1 => "ND", 2 => "odebrał, spadać", 3 => "odebrał, będzie", 4 => "odebrał, ktoś inny");
+$statusy = array (1 => "ND", 2 => "odebrał, spadać", 3 => "odebrał, będzie", 4 => "odebrał, ktoś inny", 5 => "zakończone");
 
 
 function drukuj_szukacz() {
@@ -15,20 +15,29 @@ function drukuj_szukacz() {
 
 function pasek_dodawania($numer) {
   global $osoby;
+  global $statusy;
   $data = new DateTime();
   $drukowana = $data->format('Y-m-d');
 
-  print "<div id='dodaj'>numer <input type='text' id='numer' /> ";
-  print "[".$osoby[$_SESSION['osoba']]."] ";
-  print "[".$drukowana."] ";
-  print "[efektywne: <select name='efektywnosc' id='efektywnosc'><option value='1' selected>TAK</option><option value='0'>NIE</option></select>] ";
-  print "[rezultat: <select name='status' id='status'>";
-  print "<option value='1' selected>ND</option>";
-  print "<option value='2'>odebrał, spadać</option>";
-  print "<option value='3'>odebrał, będzie</option>";
-  print "<option value='4'>odebrał, ktoś inny</option>";
-  print "</select>] ";
-  print "<button id='zapisz' onclick='zapisuj()'>+</button>";
+  print "<div id='dodaj'>";
+  print "<div class='kapsulka'>numer: <input class='short' type='text' id='numer' placeholder='numer' /></div>";
+  print "<div class='kapsulka'>".$osoby[$_SESSION['osoba']]."<br/>".$drukowana."</div>";
+  print "<div class='kapsulka'><strong>40s?</strong><br/>
+    <input type='radio' value='1' name='efektywnosc' id='efektywnosc' /> TAK<br/>
+    <input type='radio' value='0' name='efektywnosc' id='efektywnosc' checked /> NIE
+  </div>";
+  print "<div class='kapsulka2'><strong>Rezultat:</strong><br/>";
+  foreach ($statusy as $klucz => $wartosci) {
+    print "<input  type='radio' value='".$klucz."' name='status' id='status' ";
+    if ($klucz == "1")
+     {
+       print "checked";
+     }
+    print "/>".$wartosci."<br/>";
+  }
+  print "</div>";
+
+  print "<div class='kapsulka'><button class='adder' id='zapisz' onclick='zapisuj()'>+</button></div>";
   print "</div>";
 }
 
@@ -44,7 +53,7 @@ function drukuj_wyniki ($wynik) {
   global $efektywnosc;
   global $statusy;
   print "<table border=1>";
-  print "<tr><td>kiedy</td><td>kto</td><td>efektywne?</td><td>rezultat</td></tr>";
+  print "<tr><td>kiedy</td><td>kto</td><td>efektywne?</td><td>rezultat</td><td>usuń</td></tr>";
   foreach ($wynik as $klucze => $wartosci)
    {
     print "<tr>";
@@ -52,6 +61,7 @@ function drukuj_wyniki ($wynik) {
     print "<td>".$osoby[$wartosci['osoba']]."</td>";
     print "<td>".$efektywnosc[$wartosci['efektywne']]."</td>";
     print "<td>".$statusy[$wartosci['rezultat']]."</td>";
+    print "<td><button onclick='wyrzuc(".$wartosci['ID'].")'>Delete</button></td>";
 
     print "</tr>";
    }
