@@ -2,7 +2,7 @@ $(document).ready(function(){
   $("button#login").click(function(){
     loguj();
   });
-
+$(":input").inputmask();
 
 });
 
