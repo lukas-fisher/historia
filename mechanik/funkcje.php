@@ -6,9 +6,19 @@ $efektywnosc = array (1 => "TAK", 0=> "NIE");
 
 $statusy = array (1 => "ND", 2 => "odebrał, spadać", 3 => "odebrał, będzie", 4 => "odebrał, ktoś inny", 5 => "zakończone");
 
+$bazy = array (1 => "DATA", 2 => "TV", 3 => "MIX", 4 => "ABO", 5 => "Konwersja", 6 => "Saturacja");
+
 
 function drukuj_szukacz() {
-  print "<div id='szukacz'><input type='text' id='wartosc' placeholder='numer'><button id='nurkuj' onclick='nurkowanie()'>zobacz</button></div>";
+  global $_SESSION;
+  print "<div id='szukacz'><input type='text' id='wartosc' placeholder='numer'><button id='nurkuj' onclick='nurkowanie()'>zobacz</button>";
+  if (($_SESSION['osoba'] == 1) OR ($_SESSION['osoba'] == 4))
+   {
+    print "<br/>";
+    print "<span id='maurer'><button id='franz' onclick='franz()'>Franz MAURER</button></span> ";
+    print "<button onclick='staty()'>statystyka</button> ";
+   }
+  print "</div>";
   print "<div id='wynikowy'>";
   print "</div>";
 }
@@ -16,11 +26,22 @@ function drukuj_szukacz() {
 function pasek_dodawania($numer) {
   global $osoby;
   global $statusy;
+  global $bazy;
   $data = new DateTime();
   $drukowana = $data->format('Y-m-d');
 
   print "<div id='dodaj'>";
-  print "<div class='kapsulka'>numer: <input class='short' type='text' id='numer' placeholder='numer' data-inputmask=\"'mask': '999 999 999'\" /></div>";
+  print "<div class='kapsulka'>numer: <input class='short' type='text' id='numer' placeholder='numer' /></div>";
+  print "<div class='kapsulka'><strong>z bazy</strong><br/>";
+  foreach ($bazy as $klucz => $wartosci) {
+    print "<input type='radio' value='".$klucz."' name='typ' id='baza' ";
+    if ($klucz == "1")
+     {
+       print "checked";
+     }
+    print "/> ".$wartosci."<br/>";
+  }
+  print "</div>";
   print "<div class='kapsulka'>".$osoby[$_SESSION['osoba']]."<br/>".$drukowana."</div>";
   print "<div class='kapsulka'><strong>40s?</strong><br/>
     <input type='radio' value='1' name='efektywnosc' id='efektywnosc' /> TAK<br/>

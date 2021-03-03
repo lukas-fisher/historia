@@ -2,7 +2,6 @@ $(document).ready(function(){
   $("button#login").click(function(){
     loguj();
   });
-$(":input").inputmask();
 
 });
 
@@ -82,6 +81,26 @@ function wyrzuc(id) {
     },
     success: function(dane){
       $("div#odczyt").html(dane);
+    },
+    beforeSend: function(){},
+    complete: function(){},
+    error: function(xhr){
+      console.log(xhr.responseText);
+    }
+  });
+};
+
+function franz() {
+  $.ajax({
+    type: "POST",
+    url: "generator.php",
+    dataType: "html",
+    data: {
+      "funkcja": "franz",
+      "bilecik": $("input#wartosc").val()
+    },
+    success: function(dane){
+      alert("OK");
     },
     beforeSend: function(){},
     complete: function(){},
