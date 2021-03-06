@@ -6,7 +6,7 @@ $efektywnosc = array (1 => "TAK", 0=> "NIE");
 
 $statusy = array (1 => "ND", 2 => "odebrał, spadać", 3 => "odebrał, będzie", 4 => "odebrał, ktoś inny", 5 => "zakończone");
 
-$bazy = array (1 => "DATA", 2 => "TV", 3 => "MIX", 4 => "ABO", 5 => "Konwersja", 6 => "Saturacja");
+$bazy = array (1 => "DATA", 2 => "TV", 3 => "MIX", 4 => "ABO", 5 => "Konwersja", 6 => "Saturacja" 7=> "inne");
 
 
 function drukuj_szukacz() {
