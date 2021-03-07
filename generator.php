@@ -11,6 +11,8 @@ if(isset($_SESSION['osoba']))
 
    if ($_POST['funkcja'] == "nurkowanie")
     {
+      $numer = $_POST['klucz'];
+      print "<h1>".substr($numer,0,3)." ".substr($numer,3,3)." ".substr($numer,6)."</h1>";
       pasek_dodawania($_POST['klucz']);
       print "<div id='odczyt'>";
       $wynik = db_szukaj($_POST['klucz']);
@@ -19,9 +21,10 @@ if(isset($_SESSION['osoba']))
        {
         drukuj_wyniki($wynik);
        }
-      else {
-         print "brak danych";
-      }
+      else
+       {
+        print "brak danych";
+       }
       print "</div>";
 
     }
@@ -48,6 +51,11 @@ if(isset($_SESSION['osoba']))
        {
         drukuj_wyniki($wynik);
        }
+    }
+   elseif ($_POST['funkcja'] == "statystyka")
+    {
+     print "tutaj panel statystyki";
+     panel_statystyki();
     }
  }
 

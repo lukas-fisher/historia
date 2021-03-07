@@ -46,6 +46,26 @@ function nurkowanie() {
   });
 };
 
+function statystyka() {
+  $.ajax({
+    type: "POST",
+    url: "generator.php",
+    dataType: "html",
+    data: {
+      "funkcja": "statystyka",
+    },
+    success: function(dane){
+      $("div#wynikowy").html(dane);
+    },
+    beforeSend: function(){},
+    complete: function(){},
+    error: function(xhr){
+      console.log(xhr.responseText);
+    }
+  });
+};
+
+
 function zapisuj() {
   $.ajax({
     type: "POST",
@@ -108,4 +128,8 @@ function franz() {
       console.log(xhr.responseText);
     }
   });
+};
+
+function zerowanie() {
+  $("input#wartosc").val("");
 };
