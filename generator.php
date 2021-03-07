@@ -54,8 +54,17 @@ if(isset($_SESSION['osoba']))
     }
    elseif ($_POST['funkcja'] == "statystyka")
     {
-     print "tutaj panel statystyki";
      panel_statystyki();
+    }
+
+   elseif ($_POST['funkcja'] == "przeszukaj")
+    {
+      $ilosc = db_data($_POST['data']);
+      $numery = db_numery($_POST['data']);
+      print "dla: ".$_POST['data']."<br/>";
+      print "łącznie wpisów: ".$ilosc['total']."<br/>";
+      print "dla ".$numery['total']." numerów";
+
     }
  }
 

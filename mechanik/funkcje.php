@@ -96,11 +96,9 @@ function panel_statystyki() {
   $data = new DateTime();
   $drukowana = $data->format('Y-m-d');
 
-  $ilosc = db_data($drukowana);
-  $numery = db_numery($drukowana);
-
   print "<div id='panel_statystyki'>";
-  print $drukowana." wpisów: ".$ilosc['total']." dla ".$numery['total']." numerów";
+  print "<input type='text' id='dzien' value='".$drukowana."' placeholder='np. ".$drukowana."' />";
+  print "<button onclick='generuj_statystyke()'>policz</button>";
   print "</div>";
   print "<div id='statystyka'></div>";
 

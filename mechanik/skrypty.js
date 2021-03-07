@@ -52,10 +52,30 @@ function statystyka() {
     url: "generator.php",
     dataType: "html",
     data: {
-      "funkcja": "statystyka",
+      "funkcja": "statystyka"
     },
     success: function(dane){
       $("div#wynikowy").html(dane);
+    },
+    beforeSend: function(){},
+    complete: function(){},
+    error: function(xhr){
+      console.log(xhr.responseText);
+    }
+  });
+};
+
+function generuj_statystyke() {
+  $.ajax({
+    type: "POST",
+    url: "generator.php",
+    dataType: "html",
+    data: {
+      "funkcja": "przeszukaj",
+      "data": $("input#dzien").val(),
+    },
+    success: function(dane){
+      $("div#statystyka").html(dane);
     },
     beforeSend: function(){},
     complete: function(){},
