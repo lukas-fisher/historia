@@ -59,8 +59,16 @@ if(isset($_SESSION['osoba']))
 
    elseif ($_POST['funkcja'] == "przeszukaj")
     {
-      $ilosc = db_data($_POST['data']);
-      $numery = db_numery($_POST['data']);
+      $ilosc = db_data($_POST['data'], $_POST['persona']);
+      $numery = db_numery($_POST['data'], $_POST['persona']);
+      if ($_POST['persona'] == "x")
+       {
+         print "dane dla wszystkich: <br/>";
+       }
+      else
+       {
+        print "dane dla ".$osoby[$_POST['persona']].":<br/>";
+       }
       print "dla: ".$_POST['data']."<br/>";
       print "łącznie wpisów: ".$ilosc['total']."<br/>";
       print "dla ".$numery['total']." numerów";

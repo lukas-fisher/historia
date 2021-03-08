@@ -73,6 +73,7 @@ function generuj_statystyke() {
     data: {
       "funkcja": "przeszukaj",
       "data": $("input#dzien").val(),
+      "persona": $("select#osoba").val(),
     },
     success: function(dane){
       $("div#statystyka").html(dane);

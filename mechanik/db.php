@@ -33,18 +33,36 @@ function db_usun($id) {
   return $wykonaj;
 }
 
-function db_data($data) {
+function db_data($data, $osoba) {
   global $db;
-  $zapytanie = "SELECT COUNT(ID) as total FROM dialer WHERE data like '".$data."%'";
+  if ($osoba != "x")
+   {
+    $bonus =  "AND osoba = '".$osoba."'";
+   }
+  else
+   {
+    $bonus = "AND osoba LIKE '%'";
+   }
+
+  $zapytanie = "SELECT COUNT(ID) as total FROM dialer WHERE data like '".$data."%' ".$bonus;
 
   $wykonaj = mysqli_query($db, $zapytanie) or die(mysqli_error()." db_data");
   $liczba = mysqli_fetch_array($wykonaj);
   return $liczba;
 }
 
-function db_numery($data) {
+function db_numery($data, $osoba) {
   global $db;
-  $zapytanie = "SELECT COUNT(DISTINCT numer) as total FROM dialer WHERE data like '".$data."%'";
+  if ($osoba != "x")
+   {
+    $bonus =  "AND osoba = '".$osoba."'";
+   }
+  else
+   {
+    $bonus = "AND osoba LIKE '%'";
+   }
+
+  $zapytanie = "SELECT COUNT(DISTINCT numer) as total FROM dialer WHERE data like '".$data."%' ".$bonus;
 
   $wykonaj = mysqli_query($db, $zapytanie) or die(mysqli_error()." db_data");
   $liczba = mysqli_fetch_array($wykonaj);

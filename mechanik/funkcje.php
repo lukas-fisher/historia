@@ -18,7 +18,7 @@ function drukuj_szukacz() {
   if (($_SESSION['osoba'] == 1) OR ($_SESSION['osoba'] == 4))
    {
     print "<br/>";
-    print "<span id='maurer'><button id='franz' onclick='franz()'>Franz MAURER</button></span> ";
+    /*print "<span id='maurer'><button id='franz' onclick='franz()'>Franz MAURER</button></span> ";*/
     print "<button onclick='statystyka()'>statystyka</button> ";
    }
   print "</div>";
@@ -34,8 +34,8 @@ function pasek_dodawania($numer) {
   $drukowana = $data->format('Y-m-d');
 
   print "<div id='dodaj'>";
-  print "<div class='kapsulka'>numer: <input class='short' type='text' id='numer' placeholder='numer' /></div>";
-  print "<div class='kapsulka'><strong>z bazy</strong><br/>";
+  print "<div class='kapsulka'>".$numer."<input class='short' type='hidden' id='numer' placeholder='numer' /></div>";
+  /*print "<div class='kapsulka'><strong>z bazy</strong><br/>";
   foreach ($bazy as $klucz => $wartosci) {
     print "<input type='radio' value='".$klucz."' name='typ' id='baza' ";
     if ($klucz == "1")
@@ -44,7 +44,7 @@ function pasek_dodawania($numer) {
      }
     print "/> ".$wartosci."<br/>";
   }
-  print "</div>";
+  print "</div>";*/
   print "<div class='kapsulka'>".$osoby[$_SESSION['osoba']]."<br/>".$drukowana."</div>";
   print "<div class='kapsulka'><strong>40s?</strong><br/>
     <input type='radio' value='1' name='efektywnosc' id='efektywnosc' /> TAK<br/>
@@ -95,10 +95,16 @@ function drukuj_wyniki ($wynik) {
 function panel_statystyki() {
   $data = new DateTime();
   $drukowana = $data->format('Y-m-d');
+  global $osoby;
 
   print "<div id='panel_statystyki'>";
   print "<input type='text' id='dzien' value='".$drukowana."' placeholder='np. ".$drukowana."' />";
-  print "<button onclick='generuj_statystyke()'>policz</button>";
+  print "<select name='osoba' id='osoba'><option value='x' selected> Wszyscy </option>";
+  foreach ($osoby as $identyfikatory => $imie)
+   {
+    print "<option value='".$identyfikatory."'>".$imie."</option>";
+   }
+  print "</select><button onclick='generuj_statystyke()'>policz</button>";
   print "</div>";
   print "<div id='statystyka'></div>";
 
